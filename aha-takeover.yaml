@@ -1,0 +1,29 @@
+id: aha-takeover
+
+info:
+  name: aha takeover detection
+  author: abison_binoy
+  severity: high
+  reference:
+    - coming...
+    - coming...
+  tags: takeover,aha
+  metadata:
+    max-request: 1
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    matchers-condition: and
+    matchers:
+      - type: dsl
+        dsl:
+          - Host != ip
+
+      - type: word
+        part: body
+        words:
+          - "Unable to load ideas portal"
+        case-insensitive: true
